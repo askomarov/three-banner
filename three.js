@@ -161,7 +161,7 @@ class Sketch {
     const loader = new FontLoader();
 
     // Загрузка шрифта асинхронно
-    loader.load("/gentilis_regular.typeface.json", (font) => {
+    loader.load("./gentilis_regular.typeface.json", (font) => {
       this.font = font;
       this.createText();
     });
@@ -213,8 +213,8 @@ class Sketch {
       }
     );
     this.plane.material.setValues({
-      roughnessMap: this.textureLoader.load("/roughness.jpg"),
-      normalMap: this.textureLoader.load("/normal.png"),
+      roughnessMap: this.textureLoader.load("./roughness.jpg"),
+      normalMap: this.textureLoader.load("./normal.png"),
       normalScale: new THREE.Vector2(0.3, 0.3),
     });
 
