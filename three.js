@@ -20,7 +20,7 @@ class Sketch {
     this.scene = this.createScene();
     this.camera = this.createCamera();
     this.renderer = this.createRenderer();
-    // this.controls = this.addOrbitControls();
+    this.controls = this.addOrbitControls();
     this.gravity = null;
     this.world = null;
     this.RAPIER = null;
@@ -75,7 +75,7 @@ class Sketch {
     const near = 0.1;
     const far = 1000;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(3, 1, 3);
+    camera.position.set(2, 1, 3);
     return camera;
   }
 
@@ -124,8 +124,8 @@ class Sketch {
   }
 
   createCube() {
-    const WALL_HEIGHT = 2;
-    const WALL_WIDTH = 1;
+    const WALL_HEIGHT = 4;
+    const WALL_WIDTH = 10;
     this.material = new THREE.ShaderMaterial({
       extensions: {
         derivatives: "extension GL_OES_standard_derivatives : enable",
@@ -184,7 +184,7 @@ class Sketch {
       this.textMesh = new THREE.Mesh(textGeometry,this.textMaterials);
 
       // Добавляем текст на сцену
-      this.textMesh.position.set(-0.8, 1, 2.7);
+      this.textMesh.position.set(-1, 2, 2.7);
       this.textMesh.rotateY(Math.PI / 3);
       this.scene.add(this.textMesh);
     } else {
@@ -219,9 +219,9 @@ class Sketch {
     });
 
     const clonedCube = this.cube.clone();
-    clonedCube.position.z = 1;
+    clonedCube.position.z = -1;
     clonedCube.rotateY(Math.PI / 2);
-    this.scene.add(clonedCube);
+    // this.scene.add(clonedCube);
   }
 
   // Обработчик изменения размеров окна
@@ -254,7 +254,7 @@ class Sketch {
 
     this.plane.material.update();
     if (this.textMesh) {
-      this.textMesh.position.y = Math.sin(this.time / 3) * this.amplitude + this.offset;
+      this.textMesh.position.y = Math.sin(this.time * 0.25) * this.amplitude + this.offset;
       // this.textMesh.updateMatrixWorld();
       this.camera.lookAt(this.textMesh.position);
       // this.camera.updateMatrixWorld();
